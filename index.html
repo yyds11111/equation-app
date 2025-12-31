@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>数学方程完整解题步骤</title>
+<link rel="manifest" href="manifest.json">
+<style>
+body { font-family: sans-serif; background:#f5f5f5; padding:15px; }
+select,input,button { margin:6px 0; padding:6px; font-size:16px; }
+pre { background:#fff; padding:15px; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+
+<h2>数学方程完整解题步骤（网页版）</h2>
+
+<select id="type">
+  <option value="linear">一元一次方程 ax + b = 0</option>
+  <option value="quad">一元二次方程（公式法）</option>
+  <option value="fraction">分式方程 x / a = b</option>
+  <option value="abs">绝对值方程 |x − a| = b</option>
+  <option value="ineq">一元一次不等式 ax + b > 0</option>
+</select><br>
+
+a：<input id="a" type="number"><br>
+b：<input id="b" type="number"><br>
+c：<input id="c" type="number"><br>
+
+<button onclick="solve()">求解并显示步骤</button>
+
+<pre id="result"></pre>
+
+<script>
+function solve(){
+let t=type.value,a=+a.value,b=+b.value,c=+c.value,r="解：\n";
+if(t==="linear"){r+=`${a}x+${b}=0\nx=${-b/a}`;}
+if(t==="quad"){let d=b*b-4*a*c;r+=`Δ=${d}\n`;if(d>=0){r+=`x₁=${(-b+Math.sqrt(d))/(2*a)}\n`;r+=`x₂=${(-b-Math.sqrt(d))/(2*a)}`;}else r+="无实数解";}
+if(t==="fraction"){r+=`x/${a}=${b}\nx=${a*b}`;}
+if(t==="abs"){r+=`x=${a+b} 或 x=${a-b}`;}
+if(t==="ineq"){r+=`x>${-b/a}`;}
+result.textContent=r;
+}
+if("serviceWorker"in navigator){navigator.serviceWorker.register("sw.js");}
+</script>
+
+</body>
+</html>
