@@ -1,0 +1,8 @@
+{
+  "name": "数学方程解题",
+  "short_name": "方程解题",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1976d2"
+}
